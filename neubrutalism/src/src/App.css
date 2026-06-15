@@ -1,0 +1,86 @@
+
+
+.shadow-pink   { box-shadow: 5px 5px 0 0 var(--pink); }
+.shadow-blue   { box-shadow: 5px 5px 0 0 var(--blue); }
+.shadow-green  { box-shadow: 5px 5px 0 0 var(--green); }
+.shadow-purple { box-shadow: 5px 5px 0 0 var(--purple); }
+.shadow-white  { box-shadow: 5px 5px 0 0 var(--white); }
+.shadow-black  { box-shadow: 5px 5px 0 0 var(--black); }
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.badge {
+  background-color: var(--yellow);
+  padding: 0px 10px;
+  border: var(--border);
+
+  --shadow-color: #000;
+  box-shadow: 3px 3px var(--shadow-color);
+
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+
+  transition: transform 0.1s ease;
+}
+
+.badge:hover {
+  transform: translate(-3px, -3px);
+
+  --hover-border-color: var(--purple);
+  border: 3px solid var(--hover-border-color)
+
+  --translte-color: var(--black)
+  box-shadow: --translte-color;
+}
+
+.badge-pink   { 
+  color: #fff;
+  background-color: var(--pink);
+  box-shadow: 3px 3px 0 0 #fff; 
+}
+
+
+.badge-blue   { 
+  background-color: var(--blue);  
+  box-shadow: 3px 3px var(--green); 
+}
+.badge-green  { background-color: var(--green);  }
+.badge-purple { background-color: var(--purple); }
+.badge-white  { background-color: var(--white);  }
+
+.badge-black  { 
+  background-color: var(--black); 
+  color: var(--white); 
+  --shadow-color: var(--pink);
+}
+.badge-black:hover {
+  border: 3px solid #fff;
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px var(--green);
+}
+
+
+.section {
+  background-color: var(--white);
+  border: var(--border);
+  padding: 12px;
+  box-shadow: var(--shadow-xs);
+
+  margin: 20px 0px;
+}
+
+

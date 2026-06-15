@@ -1,0 +1,318 @@
+.btn {
+  border: 3px solid #000;
+  border-radius: 0;
+  background: #FFD23F;
+  color: #000;
+  box-shadow: 5px 5px 0 0 #000;
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 10px;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* Never forget focus */
+.btn:focus-visible {
+  outline: 3px solid #74B9FF;
+  outline-offset: 3px;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      padding: 4px 10px;
+      border: var(--border);
+      border-radius: 0;           /* QUAN TRỌNG: không bo tròn */
+      background: var(--yellow);
+
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1;
+
+      box-shadow: var(--shadow-xs);
+    }
+
+    /* ------------------------------------------
+       VARIANTS — chỉ đổi background, giữ nguyên hết
+       ------------------------------------------ */
+    .badge-pink   { background: var(--pink); }
+    .badge-blue   { background: var(--blue); }
+    .badge-green  { background: var(--green); }
+    .badge-purple { background: var(--purple); }
+    .badge-white  { background: var(--white); }
+    .badge-black  { background: var(--black); color: var(--white); }
+
+    /* ------------------------------------------
+       SIZES
+       ------------------------------------------ */
+    .badge-sm {
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+
+    .badge-lg {
+      padding: 6px 14px;
+      font-size: 15px;
+      box-shadow: var(--shadow-sm);  /* lg thì shadow to hơn chút */
+    }
+
+    /* ------------------------------------------
+       WITH DOT — status indicator
+       ------------------------------------------ */
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1.5px solid #000;
+      background: var(--green);
+      display: inline-block;
+    }
+    .dot-red    { background: var(--pink); }
+    .dot-yellow { background: var(--yellow); }
+
+    /* ------------------------------------------
+       OUTLINE VARIANT
+       Không fill màu, chỉ có border + shadow
+       ------------------------------------------ */
+    .badge-outline {
+      background: transparent;
+      box-shadow: var(--shadow-xs);
+    }
+
+    /* ------------------------------------------
+       INTERACTIVE — hover/active
+       Dùng khi badge là clickable (filter tag, v.v.)
+       ------------------------------------------ */
+    .badge-interactive {
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s;
+      user-select: none;
+    }
+    .badge-interactive:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 0 #000;
+    }
+    .badge-interactive:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    /* ------------------------------------------
+       PILL — biến thể bo tròn
+       Dùng khi context mềm hơn (tag, category)
+       ------------------------------------------ */
+    .badge-pill {
+      border-radius: 999px;
+    }
+
+    /* ------------------------------------------
+       CODE COMMENT STYLE cho phần giải thích
+       ------------------------------------------ */
+    .section {
+      display: block;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      background: var(--white);
+      padding: 20px 24px;
+      margin: 12px 0 24px;
+    }
+
+    .code {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 12px 16px;
+      margin: 12px 0 0;
+      display: block;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    /* ============================================
+       1. STANDARD CARD — workhorse
+       ============================================ */
+    .card {
+      
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ============================================
+       2. COLORED SHADOW — border + shadow cùng màu
+       Đây là "accent" — chỉ dùng 1 màu cho card này
+       ============================================ */
+    .card-accent-pink {
+      border: 3px solid var(--pink);
+      box-shadow: 5px 5px 0 0 var(--pink);
+    }
+    .card-accent-blue {
+      border: 3px solid var(--blue);
+      box-shadow: 5px 5px 0 0 var(--blue);
+    }
+    .card-accent-green {
+      border: 3px solid var(--green);
+      box-shadow: 5px 5px 0 0 var(--green);
+    }
+    .card-accent-pink:hover   { box-shadow: 8px 8px 0 0 var(--pink); }
+    .card-accent-blue:hover   { box-shadow: 8px 8px 0 0 var(--blue); }
+    .card-accent-green:hover  { box-shadow: 8px 8px 0 0 var(--green); }
+
+    /* ============================================
+       3. FILLED CARD — background loud, dùng cho CTA
+       Border + shadow vẫn đen để "chứa" năng lượng
+       ============================================ */
+    .card-filled {
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: var(--shadow);
+    }
+    .card-filled-pink  { background: var(--pink); color: var(--white); }
+    .card-filled-blue  { background: var(--blue); }
+
+    /* ============================================
+       BADGE nhỏ tái dùng từ bài trước
+       ============================================ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border: 2px solid #000;
+      background: var(--yellow);
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 2px 2px 0 0 #000;
+      margin-bottom: 10px;
+    }
+    .badge-white { background: var(--white); }
+
+    .btn-sm {
+      display: inline-flex;
+      border: 2px solid #000;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      box-shadow: 3px 3px 0 0 #000;
+      cursor: pointer;
+      transition: transform .1s, box-shadow .1s;
+    }
+    .btn-sm:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 0 #000; }
+    .btn-sm:active { transform: translate(2px,2px); box-shadow: none; }
+
+    /* ============================================
+       4. LAYOUT — "broken but not random"
+       Macro level: cards lệch nhẹ
+       Micro level: nội dung trong card vẫn thẳng hàng
+       ============================================ */
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .rotate-1 { transform: rotate(-2deg); }
+    .rotate-2 { transform: rotate(1.5deg); }
+    .stack .card:hover { transform: rotate(0deg) translate(-2px,-2px); }
+
+    /* ============================================
+       KEY TAKEAWAY box
+       ============================================ */
+    .takeaway {
+      border: var(--border);
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+    }
+    .takeaway h2 { color: var(--yellow); }
+    .takeaway p { font-size: 14px; line-height: 1.6; }
+
+    /* Thêm vào CSS */
+.card-media {
+  padding: 0;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  aspect-ratio: 16/9;   /* hoặc 4/3 tùy design */
+  object-fit: cover;
+  display: block;       /* xóa gap dưới ảnh */
+  border-bottom: var(--border);
+}
+
+.card-media .card-body {
+  padding: 1.5rem;
+}
+
+.card-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Chia đều 2 cột */
+  gap: 20px; /* Khoảng cách giữa 2 card */
+}
+.media-container {
+  margin-bottom: 24px;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.table th,
+.table td {
+  padding: 10px 16px;
+  border: var(--border);
+  text-align: left;
+}
+
+.table th {
+  background: var(--yellow);
+  font-weight: 700;
+}
+
+.table tr:hover td {
+  background: #f5f5f5;
+}

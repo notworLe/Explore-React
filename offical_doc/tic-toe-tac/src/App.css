@@ -1,0 +1,89 @@
+.square {
+    box-sizing: border-box;
+    background-color: var(--purple);
+    border: 3px solid #000;
+    width: 40px;
+    height: 40px;
+    box-shadow: 3px 3px #000;
+    color: var(--white);
+  
+}
+
+.square:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px var(--yellow);
+    border: 3px solid var(--yellow);
+}
+
+.square:active {
+    transform: translate(1.5px, 1.5px);
+    box-shadow: none;
+}
+
+.row {
+    display: flex;
+}
+
+.section {
+    border: 3px solid #000;
+    background-color: var(--white);
+    box-shadow: 5px 5px #000;
+}
+
+.section-header {
+    border-bottom: 3px solid #000;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 18px;
+    background-color: var(--yellow);
+}
+
+
+.section-body {
+    padding: 12px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.card {
+    border: 3px solid var(--black);
+    box-shadow: 5px 5px #000;
+    padding: 5px 10px 10px;
+    width: 300px;
+    height: 400px;
+    
+
+    overflow-y: auto;
+
+}
+
+.btn {
+  border: 3px solid #000;
+  border-radius: 0;
+  background: #FFD23F;
+  color: #000;
+  box-shadow: 3px 3px 0 0 #000;
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin: 10px;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 0 #000;
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* Never forget focus */
+.btn:focus-visible {
+  outline: 3px solid #74B9FF;
+  outline-offset: 3px;
+}
