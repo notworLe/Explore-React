@@ -83,33 +83,43 @@ export default function Main() {
   }
 
   return (
-    <div className="page">
+
     <div className="section">
-      <div className="section-header">
-        <h3>Turn: {turn}</h3>
-      </div>
-      
-      <div className="section-body">
-        <div>
-          <div className="row">
-            <Square value={squares[0]} onClick={() => squareClick(0)}/>
-            <Square value={squares[1]} onClick={() => squareClick(1)}/>
-            <Square value={squares[2]} onClick={() => squareClick(2)}/>
-          </div>
-          <div className="row">
-            <Square value={squares[3]} onClick={() => squareClick(3)}/>
-            <Square value={squares[4]} onClick={() => squareClick(4)}/>
-            <Square value={squares[5]} onClick={() => squareClick(5)}/>
-          </div>
-          <div className="row">
-            <Square value={squares[6]} onClick={() => squareClick(6)}/>
-            <Square value={squares[7]} onClick={() => squareClick(7)}/>
-            <Square value={squares[8]} onClick={() => squareClick(8)}/>
-          </div>
-          
+      <div className="container">
+        <div className="badge mb-md">
+          Tic toe tac
         </div>
-        <div>
-          <div className="card card-white">
+
+      <h2 className="mb-md">Tic toe tac</h2>
+      <div className="box-game">
+        <div className="panel">
+          <div>O</div>
+          <div>X</div>
+        </div>
+
+        <div className="window">
+          <div>
+            <div className="row">
+              <Square value={squares[0]} onClick={() => squareClick(0)}/>
+              <Square value={squares[1]} onClick={() => squareClick(1)}/>
+              <Square value={squares[2]} onClick={() => squareClick(2)}/>
+            </div>
+            <div className="row">
+              <Square value={squares[3]} onClick={() => squareClick(3)}/>
+              <Square value={squares[4]} onClick={() => squareClick(4)}/>
+              <Square value={squares[5]} onClick={() => squareClick(5)}/>
+            </div>
+            <div className="row">
+              <Square value={squares[6]} onClick={() => squareClick(6)}/>
+              <Square value={squares[7]} onClick={() => squareClick(7)}/>
+              <Square value={squares[8]} onClick={() => squareClick(8)}/>
+            </div>
+          </div>
+        </div>
+        <div className="grid-2">
+        
+
+        <div className="card card-white">
             <h3>History:</h3>
             <button className="btn" onClick={resetHistory}>
               Reset
@@ -122,11 +132,13 @@ export default function Main() {
               )}
             
           </div>
-        </div>
-
       </div>
+      </div>
+      </div>
+         
 
+      
     </div>
-    </div>
+ 
   )
 }

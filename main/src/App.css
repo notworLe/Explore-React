@@ -153,12 +153,12 @@
 }
 
 .section {
-  border: 3px solid #000;
-  background-color: var(--white);
-  box-shadow: 5px 5px #000;
-
+  margin: var(--space-3xl);
 }
 
+.section h2 {
+  font-family: var(--font-heading);
+}
 .section-header {
     border: var(--border);
     box-shadow: var(--shadow);
@@ -279,6 +279,7 @@
   position: relative;
   border-bottom: 3px solid var(--white);
   padding-top: 20px;
+  color: #000;
 }
 
 .hero-content {
@@ -316,8 +317,21 @@
 
   font-family: var(--font-mono);
   font-size: 0.75rem;
+  color: var(--text);
+
+  gap: 10px;  
 }
 
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  
+}
+
+.badge-lavender {
+  background-color: var(--lavender);
+}
 
 
 .mb-md {
@@ -326,4 +340,56 @@
 
 .mb-lg {
   margin-bottom: var(--space-lg);
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .navbar .container {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+
+
+
+.box-game {
+  background-color: var(--yellow);
+  max-width: 1200px;
+  height: 800px;
+  border: 5px solid var(--white);
+  box-shadow: 6px 6px var(--white);
+  align-items: center;
+}
+
+.box-game .panel {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--white);
+  color: #fff;
+  background-color: var(--pink)
+}
+
+.box-game .window {
+  padding: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid var(--white);
 }

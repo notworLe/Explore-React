@@ -1,7 +1,14 @@
 import { Link } from "react-router";
 
 const projects = [
-  { title: 'Tic Tac Toe', path: '/game/TicToeTac', color: 'var(--green)', desc: 'Classic game' },
+  { 
+    title: 'Tic Tac Toe', 
+    path: '/game/TicToeTac', 
+    color: 'var(--green)', 
+    desc: 'Classic 2-player game built with React hooks — useState, props, lifting state up, and win detection.',
+    tags: ['useState', 'props', 'immutability'],
+    status: 'Done'
+  }
   // { title: 'Badge', path: '/components/badge', color: 'var(--pink)', desc: 'Status badges' },
   // { title: 'Card', path: '/components/card', color: 'var(--blue)', desc: 'Content cards' },
 ]
@@ -12,7 +19,7 @@ export default function Home() {
       <div className="hero">
         <div className="container">
           <div className="hero-content">
-            <div className="badge mb-md">
+              <div className="badge mb-md">
                 React
               </div>
             <h1 className="hero-title mb-lg">NOT
@@ -29,8 +36,35 @@ export default function Home() {
       </div>
 
       <div className="section" style={{height: 900}}>
-        Hello
+        <div className="container">
+          <div className="badge">
+          1. Tic-toe-tac
+        </div>
+        <div className="badge-group mb-md">
+          {
+            projects.map(project =>
+              project.tags.map(tag => 
+                <div className="badge badge-lavender">
+                  {tag}
+              </div>
+              )
+          )
+        }
+        </div>
+        
+        <h2 className="mb-md">Local tic toe tac</h2>
+        
+        
+        <div className="grid-2">
+          <div>{projects[0].desc}</div>
+          <div>Hi</div>
+        </div>
+        </div>
+
+        
       </div>
+
+      
     </>
 
     

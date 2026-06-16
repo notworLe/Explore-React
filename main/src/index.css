@@ -15,6 +15,7 @@
   --black:  #000;
   --white:  #fff;
   --surface: #1f1e28;
+  --lavender: #B8A9FA;
 
   --font-display: 'Syne', sans-serif;
   --font-heading: 'Space Grotesk', sans-serif;
@@ -28,6 +29,9 @@
   --space-2xl: 4rem;
   --space-3xl: 6rem;
   --space-4xl: 8rem;
+
+  --ink: #000;
+  --text: #fff;
 }
 
 * { 
@@ -37,15 +41,18 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-color: var(--surface);
   font-family: var(--font-body);
+  color: var(--text);
 }
 
 h1 { 
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.1;
 }
-h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h2 { 
+  font-size: clamp(1.5rem, 3vw, 2rem); 
+}
 h3 { font-size: 1.25rem; }
 
 code, .badge {
