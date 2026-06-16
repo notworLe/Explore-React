@@ -1,3 +1,131 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container.wide {
+  max-width: 1400px;
+}
+.page {
+  padding: 3rem 0;
+  min-height: 100vh;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0px;
+  align-items: center;
+  border-bottom: var(--border-nav);
+  background: var(--yellow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+
+.navbar.surface {
+  background: var(--surface);
+  border-bottom: 4px solid var(--white);
+}
+
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+
+
+
+.navbar-brand.surface {
+  color: var(--white);
+}
+
+
+
+.navbar-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navbar-links a {
+  display: block;
+  padding: 0.4rem 0.6rem;
+  text-decoration: none;
+  color: var(--black);
+  background: var(--white);
+  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+
+}
+.navbar-links a:hover,
+.navbar-links a.active {
+  background: var(--yellow);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--white);
+}
+
+.navbar-links.surface a {
+  background: var(--surface);
+  color: var(--white);
+}
+.navbar-links.surface a.active {
+  background: var(--yellow);
+  color: var(--black);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--white);
+  border: 2px solid var(--white);
+}
+
+.navbar-links.surface a:hover {
+  transform: translate(-2px, -2px);
+  background-color: var(--yellow);
+  box-shadow: 5px 5px var(--white);
+  border: 2px solid var(--white);
+
+  color: #000;
+}
+
 .square {
     box-sizing: border-box;
     background-color: var(--purple);
@@ -32,7 +160,8 @@
 }
 
 .section-header {
-    border-bottom: 3px solid #000;
+    border: var(--border);
+    box-shadow: var(--shadow);
     padding: 12px;
     font-weight: 700;
     font-size: 18px;
@@ -94,8 +223,107 @@
 }
 
 
+
+
+
+
+
 .page {
+  padding: 3rem 0;
+  min-height: 100vh;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.section-header p {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* === GRID SYSTEM === */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* === PROJECT CARDS === */
+.project-card {
+  padding: 2rem;
+  border: var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--black);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
-  gap: 20x;
+  gap: 0.5rem;
+}
+
+.project-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+
+.hero {
+  background-color: var(--yellow);
+  position: relative;
+  border-bottom: 3px solid var(--white);
+  padding-top: 20px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size:  clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1;
+  max-width: 700px;
+}
+
+.hero-description {
+  font-family: var(--font-mono);
+  max-width: 600px;
+  font-weight: 500;
+}
+
+.badge {
+  background-color: var(--pink);
+  border: 2px solid var(--white);
+  box-shadow: 3px 3px var(--white);
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+
+
+.mb-md {
+    margin-bottom: var(--space-md);;
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
 }

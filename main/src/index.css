@@ -1,23 +1,33 @@
 :root {
-      --border: 2px solid #000;
-      --shadow-xs: 2px 2px 0 0 #000;   /* badge dùng cái này */
-      --shadow-sm: 3px 3px 0 0 #000;
-      --shadow:    5px 5px 0 0 #000;
-      --shadow-lg: 8px 8px 0 0 #000;   /* ← thiếu cái này */
+  --border: 3px solid #000;
 
-      --bg:     #FFFDF5;
-      --yellow: #FFD23F;
-      --pink:   #FF6B6B;
-      --blue:   #74B9FF;
-      --green:  #6BCB77;
-      --purple: #C77DFF;
-      --black:  #000;
-      --white:  #fff;
+  --shadow-xs: 2px 2px 0 0 #000;   /* badge dùng cái này */
+  --shadow-sm: 3px 3px 0 0 #000;
+  --shadow:    5px 5px 0 0 #000;
+  --shadow-lg: 8px 8px 0 0 #000;   /* ← thiếu cái này */
 
-    --font-display: 'Syne', sans-serif;
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'Space Mono', monospace;
+  --bg:     #FFFDF5;
+  --yellow: #FFD23F;
+  --pink:   #FF6B6B;
+  --blue:   #74B9FF;
+  --green:  #6BCB77;
+  --purple: #C77DFF;
+  --black:  #000;
+  --white:  #fff;
+  --surface: #1f1e28;
+
+  --font-display: 'Syne', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
 }
 
 * { 
@@ -28,20 +38,17 @@
 
 body {
   background-color: var(--bg);
-  padding: 40px;
-  max-width: 800px;
   font-family: var(--font-body);
 }
 
-h1 {
-  font-family: var(--font-display);
-  font-weight: 800;
+h1 { 
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
 }
-
-h2, h3 {
-  font-family: var(--font-heading);
-}
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.25rem; }
 
 code, .badge {
   font-family: var(--font-mono);
 }
+
