@@ -115,6 +115,10 @@ export default function Main() {
               <Square value={squares[8]} onClick={() => squareClick(8)}/>
             </div>
           </div>
+          
+        </div>
+        <div className="badge">
+          Turn of {turn} 
         </div>
         <div className="grid-2">
         
