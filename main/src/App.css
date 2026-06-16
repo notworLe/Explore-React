@@ -346,30 +346,7 @@
 
 
 
-
-
-@media (max-width: 768px) {
-  .navbar .container {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-
-  .navbar-links {
-    flex-wrap: wrap;
-    gap: 0.25rem;
-  }
-
-  .navbar-links a {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.5rem;
-  }
-}
-
-
-
-
-.box-game {
+/* .box-game {
   background-color: var(--yellow);
   max-width: 1200px;
   height: 800px;
@@ -392,4 +369,64 @@
   align-items: center;
   justify-content: center;
   border: 5px solid var(--white);
+} */
+
+
+.box-game {
+  display: flex;
+  flex-direction: column;  /* panel trên, window + history dưới */
+  background-color: var(--yellow);
+  width: 100%;
+  max-width: 600px;        /* bỏ 1200px — quá rộng */
+  height: auto;            /* bỏ 800px cứng */
+  border: 5px solid var(--white);
+  box-shadow: 6px 6px var(--white);
+  margin: 0 auto;          /* căn giữa */
+}
+
+.box-game .panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 3px solid var(--white);
+  color: #fff;
+  background-color: var(--pink);
+}
+
+.box-game .window {
+  padding: 24px;           /* bỏ 100px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-game .grid-2 {
+  background: var(--white);
+  padding: 16px;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .navbar .container {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .section {
+    margin: var(--space-3xl) auto;
+  }
 }
