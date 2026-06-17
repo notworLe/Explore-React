@@ -22,7 +22,6 @@ function checkWin(matrix){
     ]
     for (let i = 0; i < lines.length; i++){
       const [a, b, c] = lines[i];
-      console.log(matrix[a], matrix[b], matrix[c])
       if (matrix[a] && matrix[a] === matrix[b] && matrix[b] === matrix[c]) {
         return matrix[a];
       }
@@ -41,45 +40,66 @@ function checkFull(matrix){
 export default function Main() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [history, setHistory] = useState(Array());
-  const [turn, setTurn] = useState('X');
+  const [posHistory, setPosHistory] = useState(false);
+  const [turn, setTurn] = useState('X');  
 
-  function resetHistory() {
-    setHistory(Array());
-    setSquares(Array(9).fill(null));
-    setTurn('X')
-}
-
-  
 
   function changeTurn(){
     setTurn(turn == 'X' ? 'O' : 'X')
   }
 
-  
+  function resetHistory() {
+    setHistory(Array());
+    setSquares(Array(9).fill(null));
+    setTurn('X')
+  }
 
+  function changeSquare(posHistory) {
+    const nextSquare = Array(9).fill(null);
+
+    for (let i = 0; i <= posHistory; i++) {
+      nextSquare[history[i]] =  i % 2 == 0 ? 'X' : 'O';
+    }
+    setSquares(nextSquare);
+    setPosHistory(true);
+    setTurn((posHistory + 1 )% 2 == 0 ? 'X' : 'O');
+  }
+    
+  function changeHistory(){
+    const nextHistory = Array();
+
+    for (let i = 0; i <= posHistory; i++) {
+      nextHistory.push(history[i]);
+    }
+    alert(nextHistory);
+    setHistory(nextHistory);
+    setPosHistory(false);
+  }
+  
   function squareClick(pos){
-    if (squares[pos] == null) {
+    let currentHistory = history;
+    if (posHistory == true){
+      currentHistory = history.slice(0, posHistory);
+      setHistory(currentHistory);
+      setPosHistory(false);
+    }
+
+    if (squares[pos] == null && !checkWin(squares)) {
       const nextSquares = squares.slice();
       nextSquares[pos] = turn;
-      setSquares(nextSquares);
+      setSquares(nextSquares);  
 
-      let winner = checkWin(nextSquares);
-      if (winner){
-        setTurn(winner + ' won');
-        return;
-      }
-      else if (checkFull(nextSquares)) {
-        setTurn('draw');
-        return;
-      }
-
-  
-
-      history.push(turn + ' ' + pos);
-      setHistory(history);
-
+      setHistory([...currentHistory, pos]);
       changeTurn();
     }
+  }
+
+  const winner = checkFull(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + turn;
+  } else {
+    status = 'Next player: ' + turn;
   }
 
   return (
@@ -118,7 +138,7 @@ export default function Main() {
           
         </div>
         <div className="badge">
-          Turn of {turn} 
+          {status}
         </div>
         <div className="grid-2">
         
@@ -129,11 +149,17 @@ export default function Main() {
               Reset
             </button>
              
-             {history.map(his => 
-                <div className="btn">
-                  Position: {his}
-                </div>
+             <div>
+              {history.map((his, index) => 
+                <button
+                  key={index}
+                 className="btn"
+                 onClick={() => changeSquare(index)}
+                 >
+                  Move {index + 1}: ô {his}
+                </button>
               )}
+             </div>
             
           </div>
       </div>
