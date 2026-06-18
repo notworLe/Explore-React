@@ -2,6 +2,7 @@ import { useState, useReducer } from "react";
 import { Link } from "react-router";
 
 const STATUS_GAME = {
+  CHOOSING: 'Choosing',
   PLAYING: 'playing',
   WIN: 'win',
   DRAW: 'draw'
@@ -19,6 +20,8 @@ const initialState = {
 
 function gameReducer(state, action) {
   switch (action.type) {
+
+    
 
     case 'CLICK_SQUARE': {
       const { posSquare } = action;
@@ -65,7 +68,7 @@ function gameReducer(state, action) {
         nextSquares[pos] = i % 2 === 0 ? 'X' : 'O'; 
       }); 
 
-      const nextTurn = indexHistory + 1 % 2 === 0 ? 'X' : 'O';
+      const nextTurn = (indexHistory + 1) % 2 === 0 ? 'X' : 'O';
 
       return {
         ...state,
@@ -214,9 +217,6 @@ export default function Main() {
       </div>
       </div>
       </div>
-         
-
-      
     </div>
  
   )
