@@ -14,7 +14,7 @@ ReactDOM.createRoot(root).render(
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/tic-toe-tac " element={<TicToeTac />} />
+        <Route path="/tic-toe-tac" element={<TicToeTac />} />
       </Route>
     </Routes>
   </BrowserRouter>,
