@@ -1,13 +1,88 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { Link } from "react-router";
 
-function Square({value, onClick}) {
-  return (
-    <button className="square" onClick={onClick}>
-      {value}
-    </button>
-  );
+const STATUS_GAME = {
+  PLAYING: 'playing',
+  WIN: 'win',
+  DRAW: 'draw'
+};
+
+let SIZE = 9;
+
+const initialState = {
+  squares: Array(SIZE).fill(null),
+  history: [],
+  turn: 'X',
+  status: STATUS_GAME.PLAYING,
+  message: 'Next player: X',
+};
+
+function gameReducer(state, action) {
+  switch (action.type) {
+
+    case 'CLICK_SQUARE': {
+      const { posSquare } = action;
+      if (state.squares[posSquare] !== null) return state;
+      if (state.status !== STATUS_GAME.PLAYING) return state;
+
+      const nextSquares = state.squares.slice();
+      nextSquares[posSquare] = state.turn;
+      const nextTurn = state.turn === 'X' ? 'O': 'X';
+
+      const winner = checkWin(nextSquares);
+      const isFull = checkFull(nextSquares);
+
+      const nextHistory = state.history.slice();
+      let countTravel = state.history.length - countMove(state.squares);
+
+      if (countTravel > 0){
+        for (let i = 0; i < countTravel; i++)
+          console.log(nextHistory.pop());
+      } else if (countTravel < 0){
+        alert("Lỗi");
+      }
+      return {
+        ...state,
+        squares: nextSquares,
+        history: [...nextHistory, posSquare],
+        turn: nextTurn,
+        status: winner
+          ? STATUS_GAME.WIN
+          : isFull 
+          ? STATUS_GAME.DRAW : STATUS_GAME.PLAYING,
+        message: winner
+          ? 'Winner: ' + winner
+          : isFull ? 'DRAW !!!' : 'Next player: ' + nextTurn,
+      };
+    }
+
+    case 'TIME_TRAVEL': {
+      const { indexHistory } = action;
+      const nextSquares = Array(SIZE).fill(null);
+      const nextHistory = state.history.slice(0, indexHistory + 1);
+      
+      nextHistory.forEach((pos, i) => {
+        nextSquares[pos] = i % 2 === 0 ? 'X' : 'O'; 
+      }); 
+
+      const nextTurn = indexHistory + 1 % 2 === 0 ? 'X' : 'O';
+
+      return {
+        ...state,
+        squares: nextSquares,
+        history: indexHistory === -1 ? nextHistory: state.history,
+        turn: nextTurn,
+        status: STATUS_GAME.PLAYING,
+        message: 'Next player: ' + nextTurn
+      };
+    }
+
+    default:
+      return state;
+  }
 }
+
+
 
 function checkWin(matrix){
     const lines = [
@@ -29,123 +104,97 @@ function checkWin(matrix){
     return null;
   }
 
-function checkFull(matrix){
-  for (let i = 0; i < matrix.length; i++) {
-    if (!matrix[i]){
-      return false
+function countMove(board) {
+  let count = 0;
+  for (let i = 0; i < SIZE; i++){
+    if (board[i] !== null) {
+      count += 1;
     }
   }
-  return true
+  return count;
 }
+
+function checkFull(board){
+  const count = countMove(board);
+  return count === SIZE;
+}
+
+function Square({value, onClick}) {
+  return (
+    <button className="square" onClick={onClick}>
+      {value}
+    </button>
+  );
+}
+
+function Board({matrix, onClick}){
+  return (
+     <div>
+      <div className="row">
+        <Square value={matrix[0]} onClick={() => onClick(0)}/>
+        <Square value={matrix[1]} onClick={() => onClick(1)}/>
+        <Square value={matrix[2]} onClick={() => onClick(2)}/>
+      </div>
+      <div className="row">
+        <Square value={matrix[3]} onClick={() => onClick(3)}/>
+        <Square value={matrix[4]} onClick={() => onClick(4)}/>
+        <Square value={matrix[5]} onClick={() => onClick(5)}/>
+      </div>
+      <div className="row">
+        <Square value={matrix[6]} onClick={() => onClick(6)}/>
+        <Square value={matrix[7]} onClick={() => onClick(7)}/>
+        <Square value={matrix[8]} onClick={() => onClick(8)}/>
+      </div>
+    </div>
+  )
+}
+
 export default function Main() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [history, setHistory] = useState(Array());
-  const [posHistory, setPosHistory] = useState(false);
-  const [turn, setTurn] = useState('X');  
-
-
-  function changeTurn(){
-    setTurn(turn == 'X' ? 'O' : 'X')
-  }
-
-  function resetHistory() {
-    setHistory(Array());
-    setSquares(Array(9).fill(null));
-    setTurn('X')
-  }
-
-  function changeSquare(posHistory) {
-    const nextSquare = Array(9).fill(null);
-
-    for (let i = 0; i <= posHistory; i++) {
-      nextSquare[history[i]] =  i % 2 == 0 ? 'X' : 'O';
-    }
-    setSquares(nextSquare);
-    setPosHistory(true);
-    setTurn((posHistory + 1 )% 2 == 0 ? 'X' : 'O');
-  }
-    
-  function changeHistory(){
-    const nextHistory = Array();
-
-    for (let i = 0; i <= posHistory; i++) {
-      nextHistory.push(history[i]);
-    }
-    alert(nextHistory);
-    setHistory(nextHistory);
-    setPosHistory(false);
-  }
-  
-  function squareClick(pos){
-    let currentHistory = history;
-    if (posHistory == true){
-      currentHistory = history.slice(0, posHistory);
-      setHistory(currentHistory);
-      setPosHistory(false);
-    }
-
-    if (squares[pos] == null && !checkWin(squares)) {
-      const nextSquares = squares.slice();
-      nextSquares[pos] = turn;
-      setSquares(nextSquares);  
-
-      setHistory([...currentHistory, pos]);
-      changeTurn();
-    }
-  }
-
-  const winner = checkFull(squares);
-  let status;
-  if (winner) {
-    status = 'Winner: ' + turn;
-  } else {
-    status = 'Next player: ' + turn;
-  }
+  const [state, dispatch] = useReducer(gameReducer, initialState);
+  const { squares, history, message } = state; 
 
   return (
-
     <div className="section">
       <div className="container">
-        <div className="badge mb-md">
-          Tic toe tac
-        </div>
+        <div className="badge mb-md">Tic toe tac</div>
+        <h2 className="mb-md">Tic toe tac</h2>
 
-      <h2 className="mb-md">Tic toe tac</h2>
+
       <div className="box-game">
-        <div className="panel">
-          <div>O</div>
-          <div>X</div>
-        </div>
-
-        <div className="window">
-          <div>
-            <div className="row">
-              <Square value={squares[0]} onClick={() => squareClick(0)}/>
-              <Square value={squares[1]} onClick={() => squareClick(1)}/>
-              <Square value={squares[2]} onClick={() => squareClick(2)}/>
-            </div>
-            <div className="row">
-              <Square value={squares[3]} onClick={() => squareClick(3)}/>
-              <Square value={squares[4]} onClick={() => squareClick(4)}/>
-              <Square value={squares[5]} onClick={() => squareClick(5)}/>
-            </div>
-            <div className="row">
-              <Square value={squares[6]} onClick={() => squareClick(6)}/>
-              <Square value={squares[7]} onClick={() => squareClick(7)}/>
-              <Square value={squares[8]} onClick={() => squareClick(8)}/>
-            </div>
+          <div className="panel">
+            <div>O</div>
+            <div>X</div>
           </div>
-          
-        </div>
-        <div className="badge">
-          {status}
-        </div>
-        <div className="grid-2">
-        
 
-        <div className="card card-white">
+          <div className="window">
+            <Board 
+              matrix={squares}
+              onClick={(posSquare) => dispatch({ type: 'CLICK_SQUARE', posSquare})}/>
+          </div>
+
+        {state.status === STATUS_GAME.PLAYING && (
+          <div className="badge">
+            {message}
+          </div>
+        )}
+
+        {state.status === STATUS_GAME.WIN && (
+          <div className="badge badge-win">
+            🎉 {message}
+          </div>
+        )}
+
+        {state.status === STATUS_GAME.DRAW && (
+          <div className="badge badge-draw">
+            🤝 {message}
+          </div>
+        )}
+        
+        <div className="grid-2">
+          <div className="card card-white">
             <h3>History:</h3>
-            <button className="btn" onClick={resetHistory}>
+            <button className="btn" 
+              onClick={() => dispatch({ type: 'TIME_TRAVEL', indexHistory: -1})}>
               Reset
             </button>
              
@@ -154,9 +203,9 @@ export default function Main() {
                 <button
                   key={index}
                  className="btn"
-                 onClick={() => changeSquare(index)}
+                 onClick={() => dispatch({ type: 'TIME_TRAVEL', indexHistory: index})}
                  >
-                  Move {index + 1}: ô {his}
+                  Move {index + 1} ({index % 2 === 0 ? 'X' : 'O'}): ô {his}
                 </button>
               )}
              </div>
