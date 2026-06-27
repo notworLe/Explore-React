@@ -204,7 +204,7 @@ const [verified, setVerified] = useState(false);
         placeholder="Nhập mật khẩu đi bà già..."
       />
       <button className="btn" onClick={() => {
-        if (password === import.meta.env.VITE_NENE) {
+        if (password === import.meta.env.NENE) {
           setVerified(true);
         } else {
           alert('Mài không phải là Nene, khai mau');
@@ -218,7 +218,7 @@ const [verified, setVerified] = useState(false);
       <div className="badge badge-win mb-md">Nene là youu reallll !</div>
       <p className="mb-md">Nhớ tải grab app nhaa bà:</p>
       <a 
-        href={import.meta.env.VITE_GRAB} 
+        href={import.meta.env.GRAB} 
         target="_blank"
         rel="noreferrer"
         className="secret-link"
