@@ -207,7 +207,7 @@ const [verified, setVerified] = useState(false);
         if (password === import.meta.env.NENE) {
           setVerified(true);
         } else {
-          alert('❌ Wrong!');
+          alert('Mài không phải là Nene, khai mau');
         }
       }}>
         Verify →
