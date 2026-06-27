@@ -155,6 +155,8 @@ function Board({matrix, onClick}){
 export default function Main() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
   const { squares, history, message } = state; 
+  const [password, setPassword] = useState('');
+const [verified, setVerified] = useState(false);
 
   return (
     <div className="section">
@@ -182,10 +184,51 @@ export default function Main() {
         )}
 
         {state.status === STATUS_GAME.WIN && (
+
           <div className="badge badge-win">
             🎉 {message}
           </div>
+
         )}
+
+        {state.status === STATUS_GAME.WIN && (
+     <div className="verify-box">
+  <h2>Are you Nene? Verify yourself :3333</h2>
+  
+  {!verified ? (
+    <>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Nhập mật khẩu đi bà già..."
+      />
+      <button className="btn" onClick={() => {
+        if (password === import.meta.env.NENE) {
+          setVerified(true);
+        } else {
+          alert('❌ Wrong!');
+        }
+      }}>
+        Verify →
+      </button>
+    </>
+  ) : (
+    <div className="verified-box">
+      <div className="badge badge-win mb-md">Nene là youu reallll !</div>
+      <p className="mb-md">Nhớ tải grab app nhaa bà:</p>
+      <a 
+        href={import.meta.env.GRAB} 
+        target="_blank"
+        rel="noreferrer"
+        className="secret-link"
+      >
+        Click to get quà nè Nene 
+      </a>
+    </div>
+  )}
+</div>
+    )}
 
         {state.status === STATUS_GAME.DRAW && (
           <div className="badge badge-draw">
