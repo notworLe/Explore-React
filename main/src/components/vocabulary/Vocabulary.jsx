@@ -1,11 +1,14 @@
 
+const speech = [
+    
+]
 
 
 export default function main() {
     return (
         <>
         <div className="hero">
-            <h1>Chúng tôi không hiểu bạn, hãy tự trải nghiệm</h1>
+            .hero
             <div className="container">
                 <p>sads</p>
             </div>

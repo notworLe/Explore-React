@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 
 const BASE_DATE = new Date('2026-06-28');
 const MIN_DATE = new Date(BASE_DATE);
-MIN_DATE.setDate(BASE_DATE.getDate() + 30);
+MIN_DATE.setDate(BASE_DATE.getDate() + 2);
 
 export default function TrollButton() {
   // Quản lý các bước: 0 (Nhập số), 1 (Troll nút), 2 (Chọn ngày)
