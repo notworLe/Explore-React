@@ -8,6 +8,14 @@ const urlList = [
     {
         path: '/tic-toe-tac',
         content: 'tic-toe-tac'
+    },
+    {
+        path: '/vocabulary',
+        content: 'Let\'s experience'
+    },
+    {
+        path: '/funapp',
+        content: "Why apps are fun?"
     }
 ];
 
